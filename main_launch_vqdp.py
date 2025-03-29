@@ -262,7 +262,7 @@ def train(args, device, codec_model, disc_models, train_loader, valid_loader,
             train_loader.sampler.set_epoch(epoch)
 
         for i, batch in enumerate(train_loader):
-            y = to_device(batch[0], device, non_blocking=True)
+            y = to_device(batch, device, non_blocking=True)
  
             bw_idx = random.randint(0, len(target_bandwidths)-1)
             bw_idx_tensor = torch.tensor([bw_idx]).to(device)
@@ -367,7 +367,7 @@ def train(args, device, codec_model, disc_models, train_loader, valid_loader,
                 valid_loss = defaultdict(float)
                 with torch.no_grad():
                     for j, batch in enumerate(valid_loader):
-                        y = to_device(batch[0], device, non_blocking=True)
+                        y = to_device(batch, device, non_blocking=True)
  
                         # y_len = y.size(-1)
                         # y = y[..., :int(y_len//args.hop_length * args.hop_length)]
