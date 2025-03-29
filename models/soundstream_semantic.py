@@ -92,7 +92,7 @@ class SoundStream(nn.Module):
  
 
     def forward(self, x: torch.Tensor, bw: int):
-        x=x.unsqueeze(1)
+        
         e_semantic_input = self.get_regress_target(x).detach()
 
         e_semantic = self.encoder_semantic(e_semantic_input.transpose(1, 2))
