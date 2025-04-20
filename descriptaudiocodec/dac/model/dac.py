@@ -102,7 +102,7 @@ class DecoderBlock(nn.Module):
                 kernel_size=2 * stride,
                 stride=stride,
                 padding=math.ceil(stride / 2),
-                output_padding=  stride % 2,     #out_pad,
+                #output_padding= out_pad,
             ),
             ResidualUnit(output_dim, dilation=1),
             ResidualUnit(output_dim, dilation=3),
@@ -140,7 +140,7 @@ class Decoder(nn.Module):
         layers += [
             Snake1d(output_dim),
             WNConv1d(output_dim, d_out, kernel_size=7, padding=3),
-            # nn.Tanh(),
+            nn.Tanh(),
         ]
 
         self.model = nn.Sequential(*layers)
