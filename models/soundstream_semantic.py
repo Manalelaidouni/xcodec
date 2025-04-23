@@ -134,7 +134,8 @@ class SoundStream(nn.Module):
         e = self.fc_prior(e.transpose(1, 2)).transpose(1, 2)
 
  
-        quantized, codes, bandwidth, commit_loss  = self.quantizer(e, self.frame_rate, bw)
+        #quantized, codes, bandwidth, commit_loss  = self.quantizer(e, self.frame_rate, bw)
+        codes  = self.quantizer.encode(e, self.frame_rate, bw)
         return codes
 
     def decode(self, codes: torch.Tensor) -> torch.Tensor:
